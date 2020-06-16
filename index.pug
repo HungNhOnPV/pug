@@ -1,0 +1,37 @@
+mixin customBox(metadata)
+  .box= metadata.title
+    .box-content= metadata.content
+
+doctype html
+html
+  head
+    style.
+      h2 {
+        text-align: center,
+      }
+  body
+    include ./about
+    - const step = [1, 2, 3]
+    ul
+      for n, i in step
+        li=n + '-' + i
+
+    - const box =  {'title': 'hiep ml', 'content': 'hiep dau bo'}
+    + customBox(box)
+    
+    - const myAttributes = {'href': './image/hiepml.png', 'alt': 'hiep ml'}
+    img&attributes(myAttributes)
+
+    input(style="color: #FFF; text-align: center")
+
+    input(href="./image/hiepml.png" alt="hiep")
+
+    - const orderStatus = 'Pending'
+
+    case orderStatus 
+      when 'Pending'
+        p Your order has been placed and will be sent shortly
+      when 'In_Transit'
+        p Your order is on the move - you should receive 
+      when 'Completed'
+        p Your order has been  completed
